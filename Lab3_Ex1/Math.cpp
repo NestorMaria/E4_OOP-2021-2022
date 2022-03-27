@@ -53,13 +53,15 @@ int Math::Add(int count, ...)
 
 char* Math::Add(const char* x, const char* y)
 {
-	char* s;
-	s = (char*)malloc(strlen(x) + strlen(y) + 1);
+	if (x == nullptr || y == nullptr)
+		return nullptr;
+	char* buffer;
+	buffer = (char*)malloc(strlen(x) + strlen(y) + 1);
 	int k = 0;
 	for (int i = 0; i < strlen(x); i++, k++)
-		s[k] = x[i];
+		buffer[k] = x[i];
 	for (int i = 0; i < strlen(y); i++, k++)
-		s[k] = y[i];
-	s[k] = '\0';
-	return s;
+		buffer[k] = y[i];
+	buffer[k] = '\0';
+	return buffer;
 }
