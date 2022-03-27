@@ -1,5 +1,8 @@
 #pragma once
 #include <iostream>
+#include <stdarg.h>
+#include <string.h>
+#include <cstdlib>
 using namespace std;
 
 class Math
