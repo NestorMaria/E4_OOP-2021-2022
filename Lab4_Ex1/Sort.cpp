@@ -71,3 +71,19 @@ void Sort::QuickSort(int st, int dr, bool ascendent)
 	}
 }
 
+void Sort::BubbleSort(bool ascendent)
+{
+	bool sortat=false;
+	do
+	{
+		sortat = true;
+		for(int i=0;i<nrValues-1;i++)
+			if (v[i] > v[i + 1])
+			{
+				v[i] = v[i] + v[i + 1];
+				v[i + 1] = v[i] - v[i + 1];
+				v[i] = v[i] - v[i + 1];
+				sortat = false;
+			}
+	} while (!sortat);
+}
