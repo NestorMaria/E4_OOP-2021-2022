@@ -13,7 +13,7 @@ private:
 	int* v;
 public:
 	void InsertSort(bool ascendent=false);
-	void QuickSort(bool ascendent = false);
+	void QuickSort(int st,int dr,bool ascendent = false);
 	void BubbleSort(bool ascendent = false);
 	void Print();
 	int GetElementsCount();

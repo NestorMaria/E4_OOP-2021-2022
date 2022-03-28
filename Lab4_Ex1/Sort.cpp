@@ -21,3 +21,53 @@ void Sort::InsertSort(bool ascendent)
 	}
 }
 
+int Pivot(int* v, int st, int dr, bool ascendent)
+{
+	int i, j, di, dj;
+	i = st; j = dr;
+	di = 0; dj = 1;
+	while (i < j)
+	{
+		if (ascendent)
+		{
+			if (v[i] > v[j])
+			{
+				v[i] = v[i] + v[j];
+				v[j] = v[i] - v[j];
+				v[i] = v[i] - v[j];
+				di = di + dj;
+				dj = di - dj;
+				di = di - dj;
+			}
+			i = i + di;
+			j = j - dj;
+		}
+		else
+		{
+			if (v[i] < v[j])
+			{
+				v[i] = v[i] + v[j];
+				v[j] = v[i] - v[j];
+				v[i] = v[i] - v[j];
+				di = di + dj;
+				dj = di - dj;
+				di = di - dj;
+			}
+			i = i + di;
+			j = j - dj;
+		}
+	}
+	return i;
+}
+
+void Sort::QuickSort(int st, int dr, bool ascendent)
+{
+	int p;
+	if (st <= dr)
+	{
+		p = Pivot(this->v, st, dr, ascendent);
+		QuickSort(st, p - 1, ascendent);
+		QuickSort(p + 1, dr, ascendent);
+	}
+}
+
