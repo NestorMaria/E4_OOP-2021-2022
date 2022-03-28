@@ -61,3 +61,62 @@ Number& Number::operator--(int)
 	return *this;
 }
 
+int Number::btoten(const char* value, int base)
+{
+	int p = 1, n = 0;
+	for (int i = int(strlen(value)) - 1; i >= 0; i--)
+	{
+		n = n + (value[i] - '0') * p;
+		p = p * base;
+	}
+	return n;
+}
+
+const char* Number::tentob(int nr, int base)
+{
+	char aux[100] = "";
+	unsigned i = 0, n;
+	while (nr)
+	{
+		aux[i++] += char(nr % base + '0');
+		nr /= base;
+	}
+	aux[i] = '\0';
+	n = i;
+	for (i = 0; i < n / 2; i++)
+	{
+		char c = aux[i];
+		aux[i] = aux[n - i - 1];
+		aux[i] = c;
+	}
+	return aux;
+}
+
+Number& Number::operator+=(const Number& second)
+{
+	int baza, a, b;
+	if (second.base >= this->base)
+		baza = second.base;
+	else
+		baza = this->base;
+	this->base = baza;
+	a = btoten(this->value, this->base);
+	b = btoten(second.value, second.base);
+	strcpy(this->value, tentob(a + b, baza));
+	return* this;
+}
+
+
+Number& Number::operator-=(const Number& second)
+{
+	int baza, a, b;
+	if (second.base >= this->base)
+		baza = second.base;
+	else
+		baza = this->base;
+	this->base = baza;
+	a = btoten(this->value, this->base);
+	b = btoten(second.value, second.base);
+	strcpy(this->value, tentob(a - b, baza));
+	return *this;
+}
