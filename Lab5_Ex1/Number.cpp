@@ -120,3 +120,24 @@ Number& Number::operator-=(const Number& second)
 	strcpy(this->value, tentob(a - b, baza));
 	return *this;
 }
+
+void Number::SwitchBase(int newBase)
+{
+	strcpy(this->value, tentob(btoten(this->value, this->base), newBase));
+	this->base = newBase;
+}
+
+void Number::Print()
+{
+	cout << this->value << endl;
+}
+
+int Number::GetDigitsCount()
+{
+	return int(strlen (this->value));
+}
+
+int Number::GetBase()
+{
+	return this->base;
+}
