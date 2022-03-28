@@ -94,3 +94,16 @@ void Sort::Print()
 		cout << v[i] << ' ';
 	cout << endl;
 }
+
+int Sort::GetElementsCount()
+{
+	return nrValues;
+}
+
+int Sort::GetElementFromIndex(int index)
+{
+	if (index > -1 && index < nrValues)
+		return v[index];
+	return -1;
+}
+
