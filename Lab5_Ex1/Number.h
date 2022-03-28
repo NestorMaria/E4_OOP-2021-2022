@@ -21,6 +21,12 @@ public:
 	Number(const char* value);
 	Number(int value);
 
+	Number& operator--();
+	Number& operator--(int i);
+
+	Number& operator+=(const Number& second);
+	Number& operator-=(const Number& second);
+
 
 	void SwitchBase(int newBase);
 	void Print();
