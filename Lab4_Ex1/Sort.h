@@ -1,7 +1,9 @@
 #pragma once
 class Sort
 {
-	//add data members
+private:
+	int nrValues;
+	int* v;
 public:
 	void InsertSort(bool ascendent=false);
 	void QuickSort(bool ascendent = false);
@@ -9,5 +11,10 @@ public:
 	void Print();
 	int GetElementsCount();
 	int GetElementFromIndex(int index);
-	//add constructors
+	
+	Sort(int nrValues, int min, int max);
+	Sort(const Sort& other);
+	Sort(int* v, int nrValues);
+	Sort(int count, ...);
+	Sort(const char* s);
 };
