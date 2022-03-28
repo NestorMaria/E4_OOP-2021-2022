@@ -87,3 +87,10 @@ void Sort::BubbleSort(bool ascendent)
 			}
 	} while (!sortat);
 }
+
+void Sort::Print()
+{
+	for (int i = 0; i < nrValues; i++)
+		cout << v[i] << ' ';
+	cout << endl;
+}
