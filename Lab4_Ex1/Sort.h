@@ -1,4 +1,11 @@
 #pragma once
+#include <iostream>
+#include <string.h>
+#include <stdarg.h>
+#include <cstdlib>
+
+using namespace std;
+
 class Sort
 {
 private:
