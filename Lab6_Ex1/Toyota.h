@@ -5,4 +5,8 @@ class Toyota :public Car
 {
 public:
 	Toyota();
+	void Print()
+	{
+		printf("Toyota\n");
+	}
 };

@@ -3,5 +3,10 @@
 
 class Dacia :public Car
 {
+public:
 	Dacia();
+	void Print()
+	{
+		printf("Dacia\n");
+	}
 };

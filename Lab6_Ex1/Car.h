@@ -10,8 +10,8 @@ private:
 	int fuelCapacity;
 	float fuelConsumption;
 public:
-	float averageSpeed;
-
+	float averageSpeed[3];
+	int TimeToFinish;
 	void setFuelCapacity(int x)
 	{
 		fuelCapacity = x;
@@ -32,5 +32,5 @@ public:
 		return fuelConsumption;
 	}
 
-	void Print();
+	virtual void Print();
 };
