@@ -2,22 +2,22 @@
 
 void Circuit::SetLenght(int lungime)
 {
-	this->lenght = lungime;
+	lenght = lungime;
 }
 
 int Circuit::GetLenght()
 {
-	return this->lenght;
+	return lenght;
 }
 
 void Circuit::SetWeather(Weather vreme)
 {
-	this->weather = vreme;
+	weather = vreme;
 }
 
 Weather Circuit::GetWeather()
 {
-	return this->weather;
+	return weather;
 }
 
 void Circuit::AddCar(Car* masina)
@@ -27,7 +27,7 @@ void Circuit::AddCar(Car* masina)
 
 void Circuit::Race()
 {
-	float LungimeCursa = GetLenght();
+	int LungimeCursa = GetLenght();
 	Weather vreme = GetWeather();
 
 	for (int i = 0; i < NoOfCars; i++)
@@ -50,9 +50,16 @@ void Circuit::ShowFinalRanks()
 				cars[i]->TimeToFinish = cars[j]->TimeToFinish;
 				cars[j]->TimeToFinish = aux;
 			}
+	printf("[WINNERS]Urmatoarele masini au castigat:\n");
 	for (i = 0; i < NoOfCars; i++)
 		if (cars[i]->TimeToFinish != -1)
 			cars[i]->Print();
-		else
-			printf("Nu a incheiat cursa\n");
+}
+
+void Circuit::ShowWhoDidNotFinish()
+{
+	printf("[LOSERS]Urmatoarele masini au pierdut:\n");
+	for (int i = NoOfCars - 1; i >= 0; i--)
+		if (cars[i]->TimeToFinish == -1)
+			cars[i]->Print();
 }
