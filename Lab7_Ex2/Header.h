@@ -14,13 +14,13 @@ private:
 	{
 		int new_size = size * 2;
 		A* new_items = new A[new_size];
-		memcpy(new_items, items, size * new_size);
+		memcpy(new_items, items, size * sizeof(A));
 		this->size = new_size;
 		delete[] this->items;
 		this->items = new_items;
 	}
 public:
-	AVector() :lenght(0), size(1) { items = new A[this->size]; };
+	AVector(): lenght(0), size(1) { items = new A[this->size]; }
 
 	//push
 	void Push(const A& value)
@@ -56,33 +56,21 @@ public:
 	}
 
 	//sort
-	void Sort(bool (*cmp)(const A& item1, const A& item2) = nullptr)
+	int compare(const A& a, const A& b)
 	{
-		int i, j, aux;
-		for (i = 0; i < this->lenght - 2; i++)
-			for (j = i + 1; j < this->lenght - 1; j++)
-			{
-
-				if (cmp == nullptr)
-				{
-					if (this->items[i] < this->items[j])
-					{
-						aux = this->items[i];
-						this->items[i] = this->items[j];
-						this->items[j] = aux;
-					}
-				}
-				else
-				{
-					if ((*cmp)(items[i], items[j]))
-					{
-						aux = this->items[i];
-						this->items[i] = this->items[j];
-						this->items[j] = aux;
-					}
-				}
-			}
+		if (a < b)return 1;
+		return 0;
 	}
+	void Sort()
+	{
+		int i, j;
+		for (i = 0; i < this->lenght - 1; i++)
+			for (j = i + 1; j < this->lenght; j++)
+				if (!compare(this->items[i], this->items[j]))
+					swap(this->items[i], this->items[j]);
+	}
+
+
 	//get
 	const A* Get(int index)
 	{
@@ -110,6 +98,14 @@ public:
 		for (int i = 0; i < this->lenght; i++)
 			if (this->items[i] == value)
 				return i;
-		return -1;
+
+	}
+
+	void Afisare()
+	{
+		int i;
+		for (i = 0; i < this->lenght; i++)
+			cout << this->items[i] << ' ';
+		cout << endl;
 	}
 };
