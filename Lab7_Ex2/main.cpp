@@ -10,9 +10,15 @@ int main(int argc, const char* argv)
 	my_vector.Push(44);
 	my_vector.Push(14);
 
+	my_vector.Afisare();
+
 	my_vector.Sort();
 	
 	cout << my_vector.Pop() << endl;
+
+	my_vector.Afisare();
+
+	cout << my_vector.Count() << endl;
 
 	cout << my_vector.FirstIndexOf(10);
 	
