@@ -79,6 +79,16 @@ public:
 			this->items[index] = x;
 	}
 
-	int Count();
-	int FirstIndexOf(const A& x);
+	int Count()
+	{
+		return this->lenght;
+	}
+
+	int FirstIndexOf(const A& x)
+	{
+		for (int i = 0; i < this->lenght; i++)
+			if (this->items[i] == x)
+				return i;
+		return -1;
+	}
 };
