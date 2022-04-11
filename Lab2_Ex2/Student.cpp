@@ -12,10 +12,30 @@ const char* Student::GetName()
 
 void Student::SetMath(float nota)
 {
-	m.grade = nota;
+	this->m.grade = nota;
 }
 
 float Student::GetMath()
 {
-	return m.grade;
+	return this->m.grade;
+}
+
+void Student::SetEng(float nota)
+{
+	this->e.grade = nota;
+}
+
+float Student::GetEng()
+{
+	return this->e.grade;
+}
+
+void Student::SetHst(float nota)
+{
+	this->h.grade = nota;
+}
+
+float Student::GetHst()
+{
+	return this->h.grade;
 }
