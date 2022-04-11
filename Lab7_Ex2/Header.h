@@ -37,8 +37,22 @@ public:
 		return this->items[--lenght];
 	}
 
-	void Remove(int index);
-	void Insert(const A& x, int index);
+	void Remove(int index)
+	{
+		for (int i = index; i < this->lenght-1; i++)
+			this->items[i] = this->items[i + 1];
+	}
+
+	void Insert(const A& x, int index)
+	{
+		this->lenght++;
+		if (this->lenght + 1 > this->size)
+			Resizing();
+		for (i = this->lenght - 1; i > index; i--)
+			this->items[i] = this->items[i - 1];
+		this->items[index] = x;
+	}
+
 	void Sort();
 	const A* Get(int index);
 	void Set(const A& x,int index);
