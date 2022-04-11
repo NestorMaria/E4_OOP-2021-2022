@@ -53,9 +53,32 @@ public:
 		this->items[index] = x;
 	}
 
-	void Sort();
-	const A* Get(int index);
-	void Set(const A& x,int index);
+	void Sort()
+	{
+		int i, j, aux;
+		for(i=0;i<this->lenght-1;i++)
+			for(j=i+1;j<this->lenght;j++)
+				if (this->items[i] > this->items[j])
+				{
+					aux = this->items[i];
+					this->items[i] = this->items[j];
+					this->items[j] = aux;
+				}
+	}
+
+	const A* Get(int index)
+	{
+		if(index<this->lenght)
+			return this->items[index];
+		return nullptr;
+	}
+
+	void Set(const A& x, int index)
+	{
+		if (index < this->lenght)
+			this->items[index] = x;
+	}
+
 	int Count();
 	int FirstIndexOf(const A& x);
 };
