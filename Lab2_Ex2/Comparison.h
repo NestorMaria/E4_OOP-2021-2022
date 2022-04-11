@@ -6,9 +6,9 @@
 class Comparison
 {
 public:
-	int CmpName(const char* x, const char* y);
-	int CmpMath(float x, float y);
-	int CmpEng(float x, float y);
-	int CmpHst(float x, float y);
-	int CmpAvg(float x, float y);
+	int CmpName(Student s1,Student s2);
+	int CmpMath(Student s1,Student s2);
+	int CmpEng(Student s1,Student s2);
+	int CmpHst(Student s1,Student s2);
+	int CmpAvg(Student s1,Student s2);
 };
