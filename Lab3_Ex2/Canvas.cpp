@@ -45,3 +45,9 @@ void Canvas::DrawCircle(int x, int y, int ray, char ch)
 		SetPoint(cos(i * 3.14 / 180) * ray + x, 2 * sin(i * 3.14 / 180) * ray + y, ch);
 }
 
+void Canvas::FillCircle(int x, int y, int ray, char ch)
+{
+	int i;
+	for (i = 0; i < 360; i++)
+		DrawLine(x, y, cos(i * 3.14 / 180) * ray + x, 2 * sin(i * 3.14 / 180) * ray + y, ch);
+}
