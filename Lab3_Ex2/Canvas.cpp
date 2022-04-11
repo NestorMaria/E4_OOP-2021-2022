@@ -67,3 +67,23 @@ void Canvas::FillRect(int left, int top, int right, int bottom, char ch)
 	DrawLine(right, top, right, bottom, ch);
 	DrawLine(left, bottom, right, bottom, ch);
 }
+
+void Canvas::Print()
+{
+	for (int i = 0; i < this->lines; i++)
+	{
+		for (int j = 0; j < this-> columns; j++)
+			cout << matrix[i][j];
+		cout << endl;
+	}
+}
+
+void Canvas::Clear()
+{
+	for (int i = 0; i < this->lines; i++)
+		for (int j = 0; j < this->columns; j++)
+			matrix[i][j] = ' ';
+	for (int i = 0; i < this->lines; i++)
+		delete[] matrix[i];
+	delete[] matrix;
+}
