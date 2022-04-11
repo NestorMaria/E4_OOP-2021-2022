@@ -4,7 +4,8 @@ using namespace std;
 
 class Canvas
 {
-	//add private data members
+	char** matrix;
+	int columns, lines;
 public:
 	Canvas(int width, int height);
 	void DrawCircle(int x, int y, int ray, char ch);
