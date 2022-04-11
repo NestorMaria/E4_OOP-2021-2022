@@ -11,6 +11,7 @@ private:
 	{
 		float grade;
 	};
+	float average;
 
 public:
 	void SetName(const char* name);

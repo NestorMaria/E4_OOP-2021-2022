@@ -39,3 +39,10 @@ float Student::GetHst()
 {
 	return this->h.grade;
 }
+
+float Student::Avg()
+{
+	courses m, e, h;
+	this->average = (this->m.grade + this->e.grade + this->h.grade) / 3;
+	return this->average;
+}
