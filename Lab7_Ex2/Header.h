@@ -28,7 +28,7 @@ public:
 	void Push(const A& x)
 	{
 		if (this->lenght + 1 > this->size)
-			Resize();
+			Resizing();
 		this->items[lenght++] = x;
 	}
 
@@ -48,7 +48,7 @@ public:
 		this->lenght++;
 		if (this->lenght + 1 > this->size)
 			Resizing();
-		for (i = this->lenght - 1; i > index; i--)
+		for (int i = this->lenght - 1; i > index; i--)
 			this->items[i] = this->items[i - 1];
 		this->items[index] = x;
 	}
@@ -66,11 +66,11 @@ public:
 				}
 	}
 
-	const A* Get(int index)
+	const A Get(int index)
 	{
 		if(index<this->lenght)
 			return this->items[index];
-		return nullptr;
+		return -1;
 	}
 
 	void Set(const A& x, int index)
@@ -90,5 +90,12 @@ public:
 			if (this->items[i] == x)
 				return i;
 		return -1;
+	}
+
+	void Print()
+	{
+		for (int i = 0; i < this->lenght; i++)
+			cout << this->items[i] << ' ';
+		cout << endl;
 	}
 };
