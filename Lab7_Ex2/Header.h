@@ -20,8 +20,23 @@ private:
 		this->items = new_items;
 	}
 public:
-	void Push(const A& x);
-	const A Pop();
+	Vector() :lenght(0), size(1)
+	{
+		items = new A[this->size];
+	}
+
+	void Push(const A& x)
+	{
+		if (this->lenght + 1 > this->size)
+			Resize();
+		this->items[lenght++] = x;
+	}
+
+	const A Pop()
+	{
+		return this->items[--lenght];
+	}
+
 	void Remove(int index);
 	void Insert(const A& x, int index);
 	void Sort();
