@@ -41,17 +41,15 @@ void Canvas::DrawLine(int x1, int y1, int x2, int y2, char ch)
 void Canvas::DrawCircle(int x, int y, int ray, char ch)
 {
 	int i;
-	for (i = 0; i < 360; i++)
+	for (i = 0; i < 360; i += 60)
 		SetPoint(cos(i * 3.14 / 180) * ray + x, 2 * sin(i * 3.14 / 180) * ray + y, ch);
 }
 
 void Canvas::FillCircle(int x, int y, int ray, char ch)
 {
-	int i;
-	for (i = 0; i < 360; i++)
-		DrawLine(x, y, cos(i * 3.14 / 180) * ray + x, 2 * sin(i * 3.14 / 180) * ray + y, ch);
+	for (int i = 0; i < 360; i ++)
+		SetPoint(cos(i * 3.14 / 180) * ray + x, 2 * sin(i * 3.14 / 180) * ray + y, ch);
 }
-
 void Canvas::DrawRect(int left, int top, int right, int bottom, char ch)
 {
 	SetPoint(left, top, ch);
