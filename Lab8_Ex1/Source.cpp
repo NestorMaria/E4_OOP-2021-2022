@@ -1,23 +1,23 @@
 #include <map>
 #include <string>
 #include <queue>
-
+#include <vector>
 #include <iostream>
 using namespace std;
 
 
-bool eq(const string& a, const string& b)
+string TOLOWER(string a)
 {
-	if (b.size() != a.size())
-		return false;
-	for (int i = 0; i < a.size(); i++)
-		if (tolower(a[i]) != tolower(b[i]))
-			return false;
-	return true;
+	for (char& c : a)
+		c = tolower(c);
+	return a;
 }
+
+
 
 int main()
 {
+
 	string s = "I bought an apple. Then I eat an apple. Apple is my favourite.";
 	map<string, int>mp;
 	
@@ -26,6 +26,9 @@ int main()
 	{
 		position = s.find(" ");
 		string aux = s.substr(0, position);
+		aux = TOLOWER(aux);
+
+
 		auto it = mp.find(aux);
 		if (it != mp.end())
 			it->second++;
@@ -33,20 +36,12 @@ int main()
 		s.erase(0, position+1);
 	}
 
-	for (auto it = mp.begin(); it != mp.end(); ++it)
-		for (auto jt = mp.begin(); jt != mp.end(); ++jt)
-		{
-			if (eq(it->first, jt->first))
-			{
-				it->second++;
-				mp.erase(jt);
-			}
-		}
-	
+
 	
 	for (auto it = mp.begin(); it != mp.end(); ++it)
 		cout << it->first << ' ' << it->second << endl;
 
+	
 	return 0;
 }
 
