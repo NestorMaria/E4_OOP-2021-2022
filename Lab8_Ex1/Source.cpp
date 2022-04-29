@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-ifstream fin("Phrase.txt");
+ifstream fin("C:/Users/maria/Desktop/OOP/Phrase.txt");
 string s, sep(" ,?!.");
 map<string, int>ap;
 typedef pair<string, int>si;
