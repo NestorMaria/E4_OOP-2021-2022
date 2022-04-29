@@ -10,7 +10,18 @@ string s, sep(" ,?!.");
 map<string, int>ap;
 typedef pair<string, int>si;
 
+struct Comp
+{
+	bool operator()(si const& a, si const& b)
+	{
+		if (a.second != b.second)
+			return a.second < b.second;
+		else
+			return a.first > b.first;
+	}
+};
 
+priority_queue<si, vector<si>, Comp>C;
 
 int main()
 {
