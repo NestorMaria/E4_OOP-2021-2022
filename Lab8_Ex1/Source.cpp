@@ -44,5 +44,13 @@ int main()
 		ucuv = cuv1 + 1;
 		cuv1 = s.find_first_of(sep, ucuv);
 	}
+	for (auto const& i : ap)
+		C.push(make_pair(i.first, i.second));
+	while (!C.empty())
+	{
+		cout << C.top().first << "=>" << C.top().second << endl;
+		C.pop();
+	}
+	return 0;
 }
 
