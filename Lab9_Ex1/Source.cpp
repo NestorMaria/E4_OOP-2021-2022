@@ -2,59 +2,63 @@
 
 using namespace std;
 
-template<typename K,typename V>
+template <typename K,typename V>
 class Map
 {
+	struct MapCharacteristics
+	{
+		int index;
+		K key;
+		V value;
+	};
 public:
-	K key;
-	V value;
-	int index;
-	
-	void Set(V& value, const K& key)
-	{
-		m[key] = value;
-	}
+	//Constructor
 
-	bool Get(const K& key, V& value)
+	//Operator
+	
+
+	//Set
+	void Set(V& val, K& k)
 	{
-		if (!m[key])
-			return false;
-		else
+		if (this->key == k)
 		{
-			value = m[key];
-			return true;
+			this->value = val;
+			this->index++;
 		}
 	}
 
-	int Count()
+	//Get
+	bool Get(const K& key, V& value)
 	{
-		int cnt = 0;
-		for (auto [key, value, index] : m)
-			cnt++;
-		return cnt;
+		if (this->key != key)
+			return false;
+		else
+		{
+			;
+		}
 	}
-
-	void Clear();
-	bool Delete(const K& key);
-	bool Includes(const Map<K, V>& map);
+	//Count
+	//Clear
+	//Delete
+	//Includes
 };
+
 
 
 
 
 int main()
 {
-	Map<int, const char*> m;
-	m[10] = "C++";
+	Map<int, const char*> m; //structura ce contine key, value, index
+	m[10] = "C++"; //operator pentru asta
 	m[20] = "test";
 	m[30] = "Poo";
-	for (auto[key, value, index] : m)
+	for (auto [key, value, index] : m) //structured binfing aici
 	{
 		printf("Index:%d, Key=%d, Value=%s\n", index, key, value);
-
 	}
 	m[20] = "result";
-	for (auto[key, value, index] : m)
+	for (auto [key, value, index] : m)
 	{
 		printf("Index:%d, Key=%d, Value=%s\n", index, key, value);
 	}
