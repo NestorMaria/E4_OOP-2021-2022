@@ -456,6 +456,12 @@ public:
 		return this->Capacity;
 	}
 
-	ArrayIterator<T> GetBeginIterator();
-	ArrayIterator<T> GetEndIterator();
+	ArrayIterator<T> GetBeginIterator()
+	{
+		return 0;
+	}
+	ArrayIterator<T> GetEndIterator()
+	{
+		return this->Size;
+	}
 };
