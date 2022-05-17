@@ -68,7 +68,7 @@ public:
 
 //EXCEPTIONS CLASSES
 template<class T>
-class EXPcapacity :public Array
+class EXPcapacity :public T
 {
 	virtual const char* what() const throw()
 	{
@@ -77,7 +77,7 @@ class EXPcapacity :public Array
 };
 
 template<class T>
-class EXPoutOfRange :public Array
+class EXPoutOfRange :public T
 {
 	virtual const char* what() const throw()
 	{
@@ -86,7 +86,7 @@ class EXPoutOfRange :public Array
 };
 
 template<class T>
-class EXPinvalidComparation :public Array
+class EXPinvalidComparation :public T
 {
 	virtual const char* what() const throw()
 	{
@@ -95,7 +95,7 @@ class EXPinvalidComparation :public Array
 };
 
 template<class T>
-class EXPemptyArray :public Array
+class EXPemptyArray:public T
 {
 	virtual const char* what() const throw()
 	{
@@ -142,7 +142,7 @@ public:
 			for (int i = 0; i < this->Capacity; i++)
 				this->List[i] = new T;
 		}
-		catch (EXPcapacity& e)
+		catch (T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -171,7 +171,7 @@ public:
 				throw e;
 			return*(this->List[index]);
 		}
-		catch(EXPoutOfRange& e)
+		catch(T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -200,7 +200,7 @@ public:
 			if (this->Size == this->Capacity)
 				this->Capacity = this->Capacity * 2;
 		}
-		catch(EXPoutOfRange& e)
+		catch(T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -216,7 +216,7 @@ public:
 				throw e;
 			//!!!!ADAUGAREA LISTEI PE POZITIA INDEX
 		}
-		catch(EXPoutOfRange& e)
+		catch(T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -233,7 +233,7 @@ public:
 				*this->List[i] = *this->List[i + 1];
 			this->Size--;
 		}
-		catch(EXPoutOfRange& e)
+		catch(T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -253,7 +253,7 @@ public:
 		//sorteaza folosind comparatia intre elementele din T
 		T aux;
 		for(int i=0;i<this->Size-1;i++)
-			for(j=i+1;j<this->Size;j++)
+			for(int j=i+1;j<this->Size;j++)
 				if (*this->List[i] > *this->List[j])
 				{
 					aux = *this->List[i];
@@ -279,7 +279,7 @@ public:
 						*this->List[j] = aux;
 					}
 		}
-		catch(EXPinvalidComparation& e)
+		catch(T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -295,17 +295,18 @@ public:
 			T aux;
 			for(int i;i<this->Size-1;i++)
 				for(int j=i+1;j<this->Size;j++)
-					if (comparator->CompareElements(static_Cast<void*>(this->List[i]), static_cast<void*>(this->List[j]))>0)
+					if (comparator->CompareElements(static_cast<void*>(this->List[i]), static_cast<void*>(this->List[j]))>0)
 					{
 						aux = *this->List[j];
 						*this->List[j] = *this->List[i];
 						*this->List[i] = aux;
 					}
 		}
-		catch(EXPinvalidComparation& e)
+		catch (T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
+		
 	}
 
 	//functii de cautare - returneaza pozitia elementului sau -1 daca nu exista
@@ -321,16 +322,16 @@ public:
 			while (l <= r)
 			{
 				mid = (l + r) / 2;
-				if (*this > List[mij] == elem)
-					return mij;
-				if (*this->List[mij] < elem)
+				if (*this > List[mid] == elem)
+					return mid;
+				if (*this->List[mid] < elem)
 					l = mid + 1;
 				else
 					r = mid - 1;
 			}
 			return -1;
 		}
-		catch (EXPemptyArray& e)
+		catch (T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -347,16 +348,16 @@ public:
 			while (l <= r)
 			{
 				mid = (l + r) / 2;
-				if (compare(*this->List[mij], elem) == 0)
-					return mij;
-				if (compare(*this->List[mij], elem) < 0)
-					l = mij + 1;
+				if (compare(*this->List[mid], elem) == 0)
+					return mid;
+				if (compare(*this->List[mid], elem) < 0)
+					l = mid + 1;
 				else
-					r = mij - 1;
+					r = mid - 1;
 			}
 			return -1;
 		}
-		catch (EXPemptyArray& e)
+		catch (T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -374,15 +375,15 @@ public:
 			{
 				mid = (l + r) / 2;
 				if (comparator->CompareElements(static_cast<void*>(this->List[mid]), elem) == 0)
-					return mij;
-				if (comparator->CompareElements(static_cast<void*>(this->List[mij]), elem))
+					return mid;
+				if (comparator->CompareElements(static_cast<void*>(this->List[mid]), elem))
 					l = mid + 1;
 				else
 					r = mid - 1;
 			}
 			return -1;
 		}
-		catch (EXPemptyArray& e)
+		catch (T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -404,7 +405,7 @@ public:
 			}
 			return -1;
 		}
-		catch (EXPemptyArray& e)
+		catch (T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -422,7 +423,7 @@ public:
 					return i;
 			return -1;
 		}
-		catch (EXPemptyArray& e)
+		catch (T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -441,7 +442,7 @@ public:
 					return i;
 			return -1;
 		}
-		catch (EXPemptyArray& e)
+		catch (T& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
