@@ -412,7 +412,22 @@ public:
 	int Find(const T& elem, int(compare)(const T&, const T&))
 	{
 		//cauta un element folosind o functie de comparatie
+		EXPemptyArray e;
+		try
+		{
+			if (this->Size == 0 || this->Capacity == 0)
+				throw e;
+			for (int i = 0; i < this->Size; i++)
+				if (compare(*this->List[i], elem) == 0)
+					return i;
+			return -1;
+		}
+		catch (EXPemptyArray& e)
+		{
+			cout << "[EXCEPTION] " << e.what() << endl;
+		}
 	}
+
 	int Find(const T& elem, Compare* comparator)
 	{
 		//cauta un element folosind un comparator
