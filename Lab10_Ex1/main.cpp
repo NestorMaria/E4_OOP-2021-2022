@@ -3,18 +3,21 @@
 int main()
 {
 	Array<int> p(3);
-	p += 10;
+	p += 12;
 	p += 20;
-	p += 30;
-	cout << p.Find(30) << endl;
+	p += 506;
+	p.Insert(6, 10);
+	cout << p.Find(20) << endl;
+
+
 
 	Array<int>d(6);
-	d += 400;
-	d += 300;
-	d += 200;
-	d += 100;
+	d += 43;
+	d += 25;
+	d += 20;
+	d += 1;
 	d.Sort();
-	cout << d.Find(400);
+	cout << d.BinarySearch(25) << endl;
 
 	return 0;
 }

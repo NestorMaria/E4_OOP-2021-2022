@@ -67,39 +67,43 @@ public:
 
 
 //EXCEPTIONS CLASSES
-template<class T>
-class EXPcapacity :public T
+//template<class T>
+class EXPcapacity :public exception
 {
+public:
 	virtual const char* what() const throw()
 	{
 		return "The capacity is smaller than 0";
 	}
 };
 
-template<class T>
-class EXPoutOfRange :public T
+//template<class T>
+class EXPoutOfRange :public exception
 {
+public:
 	virtual const char* what() const throw()
 	{
 		return "The index is out of range";
 	}
 };
 
-template<class T>
-class EXPinvalidComparation :public T
+//template<class T>
+class EXPinvalidComparation :public exception
 {
+public:
 	virtual const char* what() const throw()
 	{
 		return "Invalid compare function";
 	}
 };
 
-template<class T>
-class EXPemptyArray:public T
+//template<class T>
+class EXPemptyArray :public exception
 {
+public:
 	virtual const char* what() const throw()
 	{
-		return "The array is empty";
+		return "Invalid compare function";
 	}
 };
 
@@ -142,7 +146,7 @@ public:
 			for (int i = 0; i < this->Capacity; i++)
 				this->List[i] = new T;
 		}
-		catch (T& e)
+		catch (EXPcapacity& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -171,7 +175,7 @@ public:
 				throw e;
 			return*(this->List[index]);
 		}
-		catch(T& e)
+		catch(EXPoutOfRange& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -200,7 +204,7 @@ public:
 			if (this->Size == this->Capacity)
 				this->Capacity = this->Capacity * 2;
 		}
-		catch(T& e)
+		catch(EXPoutOfRange& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -216,7 +220,7 @@ public:
 				throw e;
 			//!!!!ADAUGAREA LISTEI PE POZITIA INDEX
 		}
-		catch(T& e)
+		catch(EXPoutOfRange& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -233,7 +237,7 @@ public:
 				*this->List[i] = *this->List[i + 1];
 			this->Size--;
 		}
-		catch(T& e)
+		catch(EXPoutOfRange& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -279,7 +283,7 @@ public:
 						*this->List[j] = aux;
 					}
 		}
-		catch(T& e)
+		catch(EXPinvalidComparation& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -302,7 +306,7 @@ public:
 						*this->List[i] = aux;
 					}
 		}
-		catch (T& e)
+		catch (EXPinvalidComparation& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -312,7 +316,7 @@ public:
 	//functii de cautare - returneaza pozitia elementului sau -1 daca nu exista
 	int BinarySearch(const T& elem)
 	{
-		//cauta un element folosinf binary search in Array
+		//cauta un element folosind binary search in Array
 		EXPemptyArray e;
 		try
 		{
@@ -322,7 +326,7 @@ public:
 			while (l <= r)
 			{
 				mid = (l + r) / 2;
-				if (*this > List[mid] == elem)
+				if (*this -> List[mid] == elem)
 					return mid;
 				if (*this->List[mid] < elem)
 					l = mid + 1;
@@ -331,7 +335,7 @@ public:
 			}
 			return -1;
 		}
-		catch (T& e)
+		catch (EXPemptyArray& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -357,7 +361,7 @@ public:
 			}
 			return -1;
 		}
-		catch (T& e)
+		catch (EXPemptyArray& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -383,7 +387,7 @@ public:
 			}
 			return -1;
 		}
-		catch (T& e)
+		catch (EXPemptyArray& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -398,18 +402,19 @@ public:
 		{
 			if (this->Size == 0 || this->Capacity == 0)
 				throw e;
-			for (int i; i < this->Size; i++)
+			for (int i=0; i < this->Size; i++)
 			{
 				if (*this->List[i] == elem)
 					return i;
 			}
 			return -1;
 		}
-		catch (T& e)
+		catch (EXPemptyArray& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
 	}
+
 	int Find(const T& elem, int(compare)(const T&, const T&))
 	{
 		//cauta un element folosind o functie de comparatie
@@ -423,7 +428,7 @@ public:
 					return i;
 			return -1;
 		}
-		catch (T& e)
+		catch (EXPemptyArray& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
@@ -442,7 +447,7 @@ public:
 					return i;
 			return -1;
 		}
-		catch (T& e)
+		catch (EXPemptyArray& e)
 		{
 			cout << "[EXCEPTION] " << e.what() << endl;
 		}
